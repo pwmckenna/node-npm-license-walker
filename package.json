@@ -4,7 +4,7 @@
   "description": "output the license of a package, and all its dependencies",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pwmckenna/node-npm-license-walker",
+    "url": "git://github.com/pwmckenna/node-npm-license-walker"
   },
   "homepage": "https://github.com/pwmckenna/node-npm-license-walker",
   "bugs": "https://github.com/pwmckenna/node-npm-license-walker/issues",
