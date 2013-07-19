@@ -57,6 +57,7 @@ var stringifyDependencies = function (data, indent) {
 var outputDependencies = function (data) {
     write('\nLicenses:\n\n'.grey);
     write(stringifyDependencies(data, 4));
+    write('\n');
 };
 
 npm.load(function (err, res) {
