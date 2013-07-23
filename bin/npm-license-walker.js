@@ -77,7 +77,9 @@ var requestLicenseLicenseInformation = function (name, contents) {
 
 var parseRepositoryLicenseInfoFromRepositoryContents = function (name, contents) {
     return requestLicenseLicenseInformation(name, contents).fail(function () {
-        return requestReadmeLicenseInformation(name, contents);
+        return requestReadmeLicenseInformation(name, contents).fail(function () {
+            return q.resolve('no license information found'.red);
+        });
     });
 };
 
