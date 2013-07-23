@@ -15,7 +15,8 @@
     "npm": "~1.3.4",
     "q": "~0.9.6",
     "lodash": "~1.3.1",
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "request": "~2.22.0"
   },
   "bin": {
     "npm-license-walker": "./bin/npm-license-walker.js"
