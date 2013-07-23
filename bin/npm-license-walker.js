@@ -101,7 +101,7 @@ var requestRepositoryLicenseInformation = function (name, repository) {
     }, contentsRequest.makeNodeResolver());
     return contentsRequest.promise.spread(function (res, contents) {
         if (res.statusCode !== 200) {
-            return q.reject(contents);
+            return q.resolve(JSON.stringify(contents).red);
         } 
         return parseRepositoryLicenseInfoFromRepositoryContents(name, contents);
     }).fail(function (err) {
