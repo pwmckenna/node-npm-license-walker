@@ -18,4 +18,4 @@ npm-license-walker [npm module] ...
 npm-license-walker travis-ci
 ```
 
-> ![](http://s24.postimg.org/nsfkev3id/Screen_Shot_2013_07_19_at_11_03_22_AM.png)
+> ![](http://s24.postimg.org/nk8yhboad/Screen_Shot_2013_07_23_at_7_54_37_AM.png)
