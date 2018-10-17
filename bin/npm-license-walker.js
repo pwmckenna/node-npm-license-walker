@@ -14,6 +14,10 @@ require('colors');
 var fs = require('fs');
 var _ = require('lodash');
 
+var GITHUB_API_HEADERS = { 
+    'User-Agent': 'node-npm-license-walker (https://github.com/pwmckenna/node-npm-license-walker)'
+};
+
 assert(process.argv.length > 2);
 
 var getGitHubRawUrl = function (url) {
@@ -38,7 +42,12 @@ var requestReadmeLicenseInformation = function (name, contents) {
     }
 
     var readmeContentRequest = q.defer();
-    request(getGitHubRawUrl(readmeFile.url), readmeContentRequest.makeNodeResolver());
+    //request(getGitHubRawUrl(readmeFile.url), readmeContentRequest.makeNodeResolver());
+    request({ 
+        url: getGitHubRawUrl(licenseFile.url),
+        headers: GITHUB_API_HEADERS
+    }, licenseContentRequest.makeNodeResolver());
+    
     return readmeContentRequest.promise.spread(function (res, body) {
         var readmeText = body.split('\n').join(' ');
         var match = readmeText.match(/license/i);
@@ -65,7 +74,10 @@ var requestLicenseLicenseInformation = function (name, contents) {
     }
 
     var licenseContentRequest = q.defer();
-    request(getGitHubRawUrl(licenseFile.url), licenseContentRequest.makeNodeResolver());
+    request({ 
+        url: getGitHubRawUrl(licenseFile.url),
+        headers: GITHUB_API_HEADERS
+    }, licenseContentRequest.makeNodeResolver());
     return licenseContentRequest.promise.spread(function (res, body) {
         var licenseText = body.split('\n').join(' ').substr(0, 160);
         if (licenseText.length === 160) {
@@ -97,6 +109,7 @@ var requestRepositoryLicenseInformation = function (name, repository) {
     var contentsRequest = q.defer();
     request({
         url: 'https://api.github.com/repos/' + slug + '/contents',
+        headers: GITHUB_API_HEADERS,
         json: true
     }, contentsRequest.makeNodeResolver());
     return contentsRequest.promise.spread(function (res, contents) {
